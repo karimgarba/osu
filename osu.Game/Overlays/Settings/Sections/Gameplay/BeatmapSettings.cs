@@ -50,6 +50,14 @@ namespace osu.Game.Overlays.Settings.Sections.Gameplay
                     Caption = GraphicsSettingsStrings.StoryboardVideo,
                     Current = config.GetBindable<bool>(OsuSetting.ShowStoryboard)
                 }),
+                new SettingsItemV2(new FormCheckBox
+                {
+                    Caption = GameplaySettingsStrings.HideBeatmapBackgrounds,
+                    Current = config.GetBindable<bool>(OsuSetting.HideBeatmapBackgrounds)
+                })
+                {
+                    Keywords = new[] { "cover", "thumbnail", "image", "nsfw", "spoiler" },
+                },
                 new SettingsItemV2(new FormSliderBar<float>
                 {
                     Caption = GraphicsSettingsStrings.ComboColourNormalisation,

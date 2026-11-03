@@ -3,11 +3,10 @@
 
 using System;
 using osu.Framework.Allocation;
-using osu.Framework.Graphics.Sprites;
 
 namespace osu.Game.Beatmaps.Drawables
 {
-    public partial class BeatmapBackgroundSprite : Sprite
+    public partial class BeatmapBackgroundSprite : HideableBeatmapSprite
     {
         private readonly IWorkingBeatmap working;
 
@@ -21,9 +20,7 @@ namespace osu.Game.Beatmaps.Drawables
         [BackgroundDependencyLoader]
         private void load()
         {
-            var background = working.GetBackground();
-            if (background != null)
-                Texture = background;
+            BeatmapTexture = working.GetBackground();
         }
     }
 }

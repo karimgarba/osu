@@ -5,13 +5,12 @@
 
 using System;
 using osu.Framework.Allocation;
-using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
 
 namespace osu.Game.Beatmaps.Drawables
 {
     [LongRunningLoad]
-    public partial class OnlineBeatmapSetCover : Sprite
+    public partial class OnlineBeatmapSetCover : HideableBeatmapSprite
     {
         private readonly IBeatmapSetOnlineInfo set;
         private readonly BeatmapSetCoverType type;
@@ -45,7 +44,7 @@ namespace osu.Game.Beatmaps.Drawables
             }
 
             if (resource != null)
-                Texture = textures.Get(resource);
+                BeatmapTexture = textures.Get(resource);
         }
     }
 

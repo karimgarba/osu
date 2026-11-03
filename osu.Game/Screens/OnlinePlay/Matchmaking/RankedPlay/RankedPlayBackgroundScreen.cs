@@ -10,6 +10,7 @@ using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Transforms;
 using osu.Game.Beatmaps;
+using osu.Game.Beatmaps.Drawables;
 using osuTK;
 
 namespace osu.Game.Screens.OnlinePlay.Matchmaking.RankedPlay
@@ -95,10 +96,10 @@ namespace osu.Game.Screens.OnlinePlay.Matchmaking.RankedPlay
                     GrayscaleStrength = 0.3f,
                     BlurSigma = new Vector2(5),
                     Colour = Color4Extensions.FromHex("#cccccc"),
-                    Child = new Sprite
+                    Child = new HideableBeatmapSprite
                     {
                         RelativeSizeAxes = Axes.Both,
-                        Texture = beatmap.GetBackground(),
+                        BeatmapTexture = beatmap.GetBackground(),
                         FillMode = FillMode.Fill,
                         Anchor = Anchor.Centre,
                         Origin = Anchor.Centre,

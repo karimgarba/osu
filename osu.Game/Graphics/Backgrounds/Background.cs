@@ -31,14 +31,16 @@ namespace osu.Game.Graphics.Backgrounds
             this.textureName = textureName;
             RelativeSizeAxes = Axes.Both;
 
-            AddInternal(Sprite = new Sprite
+            AddInternal(Sprite = CreateSprite().With(s =>
             {
-                RelativeSizeAxes = Axes.Both,
-                Anchor = Anchor.Centre,
-                Origin = Anchor.Centre,
-                FillMode = FillMode.Fill,
-            });
+                s.RelativeSizeAxes = Axes.Both;
+                s.Anchor = Anchor.Centre;
+                s.Origin = Anchor.Centre;
+                s.FillMode = FillMode.Fill;
+            }));
         }
+
+        protected virtual Sprite CreateSprite() => new Sprite();
 
         [BackgroundDependencyLoader]
         private void load(LargeTextureStore textures)

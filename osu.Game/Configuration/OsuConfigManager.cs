@@ -130,6 +130,7 @@ namespace osu.Game.Configuration
 
             SetDefault(OsuSetting.ShowStoryboard, true);
             SetDefault(OsuSetting.BeatmapSkins, true);
+            SetDefault(OsuSetting.HideBeatmapBackgrounds, false);
             SetDefault(OsuSetting.BeatmapColours, true);
             SetDefault(OsuSetting.BeatmapHitsounds, true);
 
@@ -488,5 +489,6 @@ namespace osu.Game.Configuration
         /// </summary>
         PMFriendsOnly,
         HitsoundVolume,
+        HideBeatmapBackgrounds,
     }
 }

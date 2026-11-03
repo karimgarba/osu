@@ -138,10 +138,10 @@ namespace osu.Game.Screens.Play
                             Masking = true,
                             Children = new[]
                             {
-                                new Sprite
+                                new HideableBeatmapSprite
                                 {
                                     RelativeSizeAxes = Axes.Both,
-                                    Texture = beatmap.GetBackground(),
+                                    BeatmapTexture = beatmap.GetBackground(),
                                     Origin = Anchor.Centre,
                                     Anchor = Anchor.Centre,
                                     FillMode = FillMode.Fill,

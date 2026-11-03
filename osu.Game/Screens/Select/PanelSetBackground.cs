@@ -13,6 +13,7 @@ using osu.Framework.Graphics.Primitives;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
 using osu.Game.Beatmaps;
+using osu.Game.Beatmaps.Drawables;
 using osu.Game.Overlays;
 using osuTK;
 using osuTK.Graphics;
@@ -174,7 +175,7 @@ namespace osu.Game.Screens.Select
             }, loadCancellation.Token);
         }
 
-        public partial class PanelBeatmapBackground : Sprite
+        public partial class PanelBeatmapBackground : HideableBeatmapSprite
         {
             private readonly IWorkingBeatmap working;
 
@@ -188,7 +189,7 @@ namespace osu.Game.Screens.Select
             [BackgroundDependencyLoader]
             private void load()
             {
-                Texture = working.GetPanelBackground();
+                BeatmapTexture = working.GetPanelBackground();
             }
         }
     }

@@ -4,8 +4,10 @@
 #nullable disable
 
 using osu.Framework.Allocation;
+using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
 using osu.Game.Beatmaps;
+using osu.Game.Beatmaps.Drawables;
 
 namespace osu.Game.Graphics.Backgrounds
 {
@@ -24,8 +26,12 @@ namespace osu.Game.Graphics.Backgrounds
         [BackgroundDependencyLoader]
         private void load(LargeTextureStore textures)
         {
-            Sprite.Texture = Beatmap?.GetBackground() ?? textures.Get(fallbackTextureName);
+            var sprite = (HideableBeatmapSprite)Sprite;
+            sprite.FallbackTexture = textures.Get(fallbackTextureName);
+            sprite.BeatmapTexture = Beatmap?.GetBackground();
         }
+
+        protected override Sprite CreateSprite() => new HideableBeatmapSprite();
 
         public override bool Equals(Background other)
         {

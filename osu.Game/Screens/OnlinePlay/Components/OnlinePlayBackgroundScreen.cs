@@ -7,10 +7,12 @@ using osu.Framework.Allocation;
 using osu.Framework.Extensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Colour;
+using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
 using osu.Framework.Logging;
 using osu.Framework.Screens;
 using osu.Game.Beatmaps;
+using osu.Game.Beatmaps.Drawables;
 using osu.Game.Database;
 using osu.Game.Graphics.Backgrounds;
 using osu.Game.Online.API.Requests.Responses;
@@ -100,15 +102,18 @@ namespace osu.Game.Screens.OnlinePlay.Components
             }
 
             [BackgroundDependencyLoader]
-            private void load(BeatmapLookupCache lookupCache, LargeTextureStore textures, CancellationToken cancellationToken)
+            private void load(BeatmapLookupCache lookupCache, BeatmapManager beatmapManager, LargeTextureStore textures, CancellationToken cancellationToken)
             {
                 try
                 {
                     APIBeatmap? beatmap = lookupCache.GetBeatmapAsync(beatmapId, cancellationToken).GetResultSafely();
                     string? coverImage = beatmap?.BeatmapSet?.Covers.Cover;
 
+                    var sprite = (HideableBeatmapSprite)Sprite;
+                    sprite.FallbackTexture = beatmapManager.DefaultBeatmap.GetBackground();
+
                     if (coverImage != null)
-                        Sprite.Texture = textures.Get(coverImage);
+                        sprite.BeatmapTexture = textures.Get(coverImage);
                 }
                 catch (OperationCanceledException)
                 {
@@ -118,6 +123,8 @@ namespace osu.Game.Screens.OnlinePlay.Components
                     Logger.Error(ex, $"Failed to retrieve cover image for beatmap {beatmapId}.");
                 }
             }
+
+            protected override Sprite CreateSprite() => new HideableBeatmapSprite();
         }
 
         private partial class DefaultBackground : Background

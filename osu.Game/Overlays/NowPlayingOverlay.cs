@@ -16,6 +16,7 @@ using osu.Framework.Graphics.Textures;
 using osu.Framework.Input.Events;
 using osu.Framework.Localisation;
 using osu.Game.Beatmaps;
+using osu.Game.Beatmaps.Drawables;
 using osu.Game.Graphics;
 using osu.Game.Graphics.Containers;
 using osu.Game.Graphics.Sprites;
@@ -459,7 +460,7 @@ namespace osu.Game.Overlays
 
         private partial class Background : BufferedContainer
         {
-            private readonly Sprite sprite;
+            private readonly HideableBeatmapSprite sprite;
             private readonly WorkingBeatmap beatmap;
 
             public Background(WorkingBeatmap beatmap)
@@ -472,7 +473,7 @@ namespace osu.Game.Overlays
 
                 Children = new Drawable[]
                 {
-                    sprite = new Sprite
+                    sprite = new HideableBeatmapSprite
                     {
                         RelativeSizeAxes = Axes.Both,
                         Colour = OsuColour.Gray(150),
@@ -494,7 +495,8 @@ namespace osu.Game.Overlays
             [BackgroundDependencyLoader]
             private void load(LargeTextureStore textures)
             {
-                sprite.Texture = beatmap.GetBackground() ?? textures.Get(@"Backgrounds/bg2");
+                sprite.FallbackTexture = textures.Get(@"Backgrounds/bg2");
+                sprite.BeatmapTexture = beatmap.GetBackground();
             }
         }
 

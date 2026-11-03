@@ -149,6 +149,11 @@ namespace osu.Game.Localisation
         /// </summary>
         public static LocalisableString ClassicScoreDisplay => new TranslatableString(getKey(@"classic_score_display"), @"Classic");
 
+        /// <summary>
+        /// "Hide beatmap covers and backgrounds"
+        /// </summary>
+        public static LocalisableString HideBeatmapBackgrounds => new TranslatableString(getKey(@"hide_beatmap_backgrounds"), @"Hide beatmap covers and backgrounds");
+
         private static string getKey(string key) => $@"{prefix}:{key}";
     }
 }
